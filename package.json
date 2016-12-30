@@ -1,0 +1,23 @@
+{
+  "name": "insta-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 1000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-ritik16n/instastats.git"
+  },
+  "author": "Ritik Saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-ritik16n/instastats/issues"
+  },
+  "homepage": "https://github.com/s-ritik16n/instastats#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
