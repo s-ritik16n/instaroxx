@@ -42,9 +42,11 @@ app.get('/home',function(req,res){
       })
     })
   })
-  req.write(data);
+  setTimeout(function(){
+    req.write(data);
+  },5000);
   res.end(resstr);
-  })
+})
 
 app.listen(app.get('port'),function(){
   console.log("All eyes at "+process.env.PORT);
