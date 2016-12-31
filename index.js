@@ -36,13 +36,13 @@ app.get('/home',function(req,res){
       resstr += chunk;
     })
     resp.on('end',function(){
-      res.send(resstr);
+      res.end(resstr);
     })
   })
   req.write(data);
-  setTimeout(res.send(resstr),10000);
-  //res.send(resstr);
-})
+  res.end(resstr);
+  //setTimeout(res.end(resstr),10000);
+  })
 
 app.listen(app.get('port'),function(){
   console.log("All eyes at "+process.env.PORT);
