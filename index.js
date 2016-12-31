@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var http = require('http');
+var fs = require('fs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -36,12 +37,13 @@ app.get('/home',function(req,res){
       resstr += chunk;
     })
     resp.on('end',function(){
-      res.end(resstr);
+      fs.writeFile('msg.txt',resstr,function(err){
+        console.log(err);
+      })
     })
   })
   req.write(data);
   res.end(resstr);
-  //setTimeout(res.end(resstr),10000);
   })
 
 app.listen(app.get('port'),function(){
