@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-var exec = require('child_process').exec;
+var http = require('http');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -11,6 +11,32 @@ app.set('port',process.env.PORT);
 
 app.get('/',function(req,res){
   res.render('index')
+})
+
+app.get('/home',function(req,res){
+  var code  = req.query.code;
+  console.log(code);
+  var data = JSON.stringify({
+    client_id: "e3ec1ae4440a4ac8b08ec3c79d3bcae9",
+    client_secret: "f44f191ee332442f855d8e7cf003d77c",
+    grant_type: authorizaton_code,
+    redirect_url: "https://igroxx.herokuapp.com/home",
+    code: code
+  })
+  var options = {
+    host: 'https://api.instagram.com',
+    path:'/oauth/access_token',
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+    }
+  }
+  var req = http.request(options,function(res){
+    res.on('data',function(chunk){
+      console.log("Response: "+chunk);
+    })
+  })
+  req.write(data);
 })
 
 app.listen(app.get('port'),function(){
