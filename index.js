@@ -35,11 +35,9 @@ app.get('/home',function(req,res){
     resp.on('data',function(chunk){
       resstr += chunk;
     })
-    resp.on('end',function(){
-      res.send(resstr);
-    })
   })
   req.write(data);
+  setTimeout(res.send(resstr),10000);
   //res.send(resstr);
 })
 
