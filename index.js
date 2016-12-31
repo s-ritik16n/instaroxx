@@ -41,15 +41,15 @@ app.get('/home',function(req,res){
       resstr += chunk;
     })
     resp.on('end',function(){
-      res.redirect(303,'/home2');
+      res.redirect(303,'/home2/'+resstr);
     })
   })
   req.write(data);
   res.redirect(303,'/home2/'+resstr);
 })
 
-app.get('/home',function(req,res){
-  res.send(req.session.response);
+app.get('/home2/:resp',function(req,res){
+  res.send(req.params.resp);
 })
 
 app.listen(app.get('port'),function(){
