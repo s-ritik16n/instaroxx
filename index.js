@@ -27,7 +27,7 @@ app.get('/home',function(req,res){
     host: 'https://api.instagram.com',
     path:'/oauth/access_token',
     method:'POST',
-    headers:{console.log(code);
+    headers:{
       'Content-Type':'application/json',
     }
   }
