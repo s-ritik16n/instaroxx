@@ -7,12 +7,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
 
-app.set('port',5000);
+app.set('port',process.env.PORT);
 
 app.get('/',function(req,res){
   res.render('index')
 })
 
 app.listen(app.get('port'),function(){
-  console.log("All eyes at "+app.get('port'));
+  console.log("All eyes at "+process.env.PORT);
 });
