@@ -37,15 +37,11 @@ app.get('/home',function(req,res){
       resstr += chunk;
     })
     resp.on('end',function(){
-      fs.writeFile('msg.txt',resstr,function(err){
-        console.log(err);
-      })
+      res.send(resstr);
     })
   })
   req.write(data);
-  setTimeout(function(){
-    res.end(resstr);
-  },5000);
+  res.end();
 })
 
 app.listen(app.get('port'),function(){
