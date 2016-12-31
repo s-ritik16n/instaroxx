@@ -41,7 +41,9 @@ app.get('/home',function(req,res){
     })
   })
   req.write(data);
-  res.end();
+  setTimeout(function(){
+    res.send(resstr);
+  },5000);
 })
 
 app.listen(app.get('port'),function(){
