@@ -38,14 +38,14 @@ app.get('/home',function(req,res){
   }
   var req = http.request(options,function(resp){
     resp.on('data',function(chunk){
-      req.session.reponse = chunk;
+      resstr += chunk;
     })
     resp.on('end',function(){
       res.redirect(303,'/home2');
     })
   })
   req.write(data);
-  res.send(resstr)
+  res.redirect(303,'/home2/'+resstr);
 })
 
 app.get('/home',function(req,res){
