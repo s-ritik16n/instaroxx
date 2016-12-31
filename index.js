@@ -42,10 +42,10 @@ app.get('/home',function(req,res){
       })
     })
   })
+  req.write(data);
   setTimeout(function(){
-    req.write(data);
+    res.end(resstr);
   },5000);
-  res.end(resstr);
 })
 
 app.listen(app.get('port'),function(){
