@@ -3,10 +3,14 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var fs = require('fs');
+var session = require('express-session');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
+app.use(session({
+  secret: process.env.SECRET,
+}))
 
 app.set('port',process.env.PORT);
 
@@ -34,14 +38,18 @@ app.get('/home',function(req,res){
   }
   var req = http.request(options,function(resp){
     resp.on('data',function(chunk){
-      resstr += chunk;
+      req.session.reponse = chunk;
     })
     resp.on('end',function(){
-      res.send(resstr);
+      res.redirect(303,'/home2');
     })
   })
   req.write(data);
-  res.end("")
+  res.send(resstr)
+})
+
+app.get('/home',function(req,res){
+  res.send(req.session.response);
 })
 
 app.listen(app.get('port'),function(){
