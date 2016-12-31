@@ -33,14 +33,15 @@ page.open('https:/instagram.com/accounts/login/', function() {
 	 });
 
 	 // fill in data and press login
-	 page.sendEvent('click',ig.user.x, ig.user.y);
-	 page.sendEvent('keypress','');
-
-	 page.sendEvent('click',ig.pass.x, ig.pass.y);
-	 page.sendEvent('keypress', '');
-     page.sendEvent('click',ig.login.x, ig.login.y);
-     // wait for response
-     	setTimeout(function() {
+	 //page.sendEvent('click',ig.user.x, ig.user.y);
+	 page.sendEvent('keypress','trialaccount012',null,null,0);
+	 page.sendEvent('keypress',page.event.key.Tab,null,null,0);
+	 //page.sendEvent('click',ig.pass.x, ig.pass.y);
+	 page.sendEvent('keypress', '#Date20111995',null,null,0);
+	 page.sendEvent('keypress',page.event.key.Tab,null,null,0);
+	 page.sendEvent('keypress',page.event.key.Enter,null,null,0);
+   // wait for response
+     setTimeout(function() {
      		page.render('insta.png');
      		phantom.exit();
      	}, 5000);
