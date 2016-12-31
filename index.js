@@ -31,13 +31,16 @@ app.get('/home',function(req,res){
       'Content-Type':'application/json',
     }
   }
-  var req = http.request(options,function(res){
-    res.on('data',function(chunk){
+  var req = http.request(options,function(resp){
+    resp.on('data',function(chunk){
       resstr += chunk;
+    })
+    resp.on('end',function(){
+      res.send(resstr);
     })
   })
   req.write(data);
-  res.send(resstr);
+  //res.send(resstr);
 })
 
 app.listen(app.get('port'),function(){
