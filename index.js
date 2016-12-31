@@ -19,7 +19,7 @@ app.get('/home',function(req,res){
   var data = JSON.stringify({
     client_id: "e3ec1ae4440a4ac8b08ec3c79d3bcae9",
     client_secret: "f44f191ee332442f855d8e7cf003d77c",
-    grant_type: authorizaton_code,
+    grant_type: "authorizaton_code",
     redirect_url: "https://igroxx.herokuapp.com/home",
     code: code
   })
