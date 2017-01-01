@@ -25,7 +25,7 @@ app.get('/home*',function(req,res){
   //res.send(req);
   var resp = spawn('node login.js',{input:String});
   var obj = resp.stdout.toString();
-  res.send(Object.keys(obj));
+  res.json(obj);
   //urlObj = url.parse(req.path).hash()
   /*
   var code  = req.query.code;
