@@ -56,6 +56,9 @@ app.get('/home',function(req,res){
       resp.on('end',function(){
         resolve(resstr)
       })
+      resp.on('error',function(e){
+        resolve(e);
+      })
     })
     req.write(data);
   });
