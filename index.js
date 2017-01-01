@@ -24,7 +24,7 @@ app.get('/',function(req,res){
 
 app.get('/home*',function(req,res){
   //urlObj = url.parse(req.path).hash()
-  res.json(req.path);
+  res.json(req);
   /*
   var code  = req.query.code;
   var resstr = {};
