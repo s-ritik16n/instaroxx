@@ -44,7 +44,7 @@ app.get('/home',function(req,res){
     }
   }
   var timeout = false;
-  while (timeout !== true) {
+  setTimeout (function() {
     var req = https.request(options,function(resp){
       resp.on('data',function(chunk){
         resstr['data'] = chunk;
@@ -59,7 +59,7 @@ app.get('/home',function(req,res){
     })
     req.write(data);
     req.end()
-  }
+  },2000);
   res.json(resstr);
   /*
   var p1 = new Promise(function(resolve, reject) {
