@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
 app.use(session({
   secret: process.env.SECRET,
+  resave: true
 }))
 
 app.set('port',process.env.PORT);
@@ -55,10 +56,14 @@ app.get('/home',function(req,res){
   });
   p1.then(
     function(val){
-      res.send(val);
+      res.redirect('/home2'+val);
     }
   )
 });
+
+app.get('/home2/:resp',function(req,res){
+  res.send(req.params.resp);
+})
 
 app.listen(app.get('port'),function(){
   console.log("All eyes at "+process.env.PORT);
