@@ -18,7 +18,7 @@ app.config(function($routeProvider,$locationProvider){
 });
 
 app.controller("main",function($scope,$location){
-  $scope.load = function(){
+  $scope.loadHash = function(){
     $scope.hash = $location.hash()
   }
 })
