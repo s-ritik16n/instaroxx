@@ -2,10 +2,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var https = require('https');
-var fs = require('fs');
 var session = require('express-session');
 var request = require('request');
-var url = require('url');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,8 +21,8 @@ app.get('/',function(req,res){
 })
 
 app.get('/home*',function(req,res){
+  res.send(req);
   //urlObj = url.parse(req.path).hash()
-  res.json(req);
   /*
   var code  = req.query.code;
   var resstr = {};
@@ -64,8 +62,7 @@ app.get('/home*',function(req,res){
     req.write(data);
   },8000);
   req.end()
-  res.json(resstr);*/
-  /*
+  res.json(resstr);
   var p1 = new Promise(function(resolve, reject) {
 
   });
