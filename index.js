@@ -29,7 +29,7 @@ app.get('/home*',function(req,res){
   for(var i=0;i<15;i++){
     str+=obj['"'+i+'"']
   }
-  res.json(str);
+  res.send(obj['0']+obj['1']+obj["2"]);
   //urlObj = url.parse(req.path).hash()
   /*
   var code  = req.query.code;
