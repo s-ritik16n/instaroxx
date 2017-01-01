@@ -23,8 +23,8 @@ app.get('/',function(req,res){
 })
 
 app.get('/home*',function(req,res){
-  urlObj = url.parse(req.path).hash()
-  res.json(urlObj);
+  //urlObj = url.parse(req.path).hash()
+  res.json(req.path);
   /*
   var code  = req.query.code;
   var resstr = {};
