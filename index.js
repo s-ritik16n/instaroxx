@@ -39,15 +39,6 @@ app.get('/home',function(req,res){
       'Content-Type':'application/json',
     }
   }
-  /*
-  var req = http.request(options,function(resp){
-    resp.on('data',function(chunk){
-      resstr += chunk;
-    })
-    resp.on('end',function(){
-      res.redirect(303,'/home2/'+resstr);
-    })
-  })*/
   var p1 = new Promise(function(resolve, reject) {
     var req = https.request(options,function(resp){
       resp.on('data',function(chunk){
@@ -67,7 +58,7 @@ app.get('/home',function(req,res){
       res.redirect('/home2/'+val);
     }
   )
-  req.setTimeout(5000,function(){
+  req.setTimeout(50000,function(){
     res.send(resstr.data)
   });
 });
