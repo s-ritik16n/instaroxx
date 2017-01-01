@@ -50,13 +50,15 @@ app.get('/home',function(req,res){
       resp.on('data',function(chunk){
         resstr += chunk;
       })
+      resp.on('end',function(){
+        resolve(resstr)      
+      })
     })
     req.write(data);
-    resolve(resstr)
   });
   p1.then(
     function(val){
-      res.redirect('/home2'+val);
+      res.redirect('/home2/'+val);
     }
   )
 });
