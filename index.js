@@ -21,7 +21,8 @@ app.get('/',function(req,res){
 
 app.get('/home',function(req,res){
   var code  = req.query.code;
-  var resstr = code;
+  var resstr = {};
+  resstr['code'] = code;
   var data = JSON.stringify({
     client_id: "e3ec1ae4440a4ac8b08ec3c79d3bcae9",
     client_secret: "f44f191ee332442f855d8e7cf003d77c",
@@ -33,10 +34,12 @@ app.get('/home',function(req,res){
     host: 'https://api.instagram.com',
     path:'/oauth/access_token',
     method:'POST',
+    port: 80,
     headers:{
       'Content-Type':'application/json',
     }
-  }/*
+  }
+  /*
   var req = http.request(options,function(resp){
     resp.on('data',function(chunk){
       resstr += chunk;
@@ -48,10 +51,10 @@ app.get('/home',function(req,res){
   var p1 = new Promise(function(resolve, reject) {
     var req = https.request(options,function(resp){
       resp.on('data',function(chunk){
-        resstr += chunk;
+        resstr['data'] = chunk;
       })
       resp.on('end',function(){
-        resolve(resstr)      
+        resolve(resstr)
       })
     })
     req.write(data);
