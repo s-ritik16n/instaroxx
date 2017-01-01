@@ -23,7 +23,7 @@ app.get('/',function(req,res){
 });
 
 app.get('/home',function(req,res){
-  res.render('index')
+  res.sendFile(__dirname+'/public/index.html')
 })
 
 app.get('/home2/:resp',function(req,res){
