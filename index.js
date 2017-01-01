@@ -4,6 +4,7 @@ var app = express();
 var https = require('https');
 var fs = require('fs');
 var session = require('express-session');
+var request = require('request');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -42,11 +43,13 @@ app.get('/home',function(req,res){
       'Content-Type':'application/json',
     }
   }
+  var timeout = false;
   var req = https.request(options,function(resp){
     resp.on('data',function(chunk){
       resstr['data'] = chunk;
     })
     resp.on('end',function(){
+      timeout = true;
       res.json(resstr)
     })
     resp.on('error',function(e){
@@ -54,6 +57,11 @@ app.get('/home',function(req,res){
     })
   })
   req.write(data);
+  //..req.end()
+  while (timeout !== true) {
+    //do nothing
+  }
+  res.json(resstr);
   /*
   var p1 = new Promise(function(resolve, reject) {
 
