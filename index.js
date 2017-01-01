@@ -4,7 +4,7 @@ var app = express();
 var https = require('https');
 var session = require('express-session');
 var request = require('request');
-var child_process = require('child_process').spawn;
+var spawn = require('child_process').spawn;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
