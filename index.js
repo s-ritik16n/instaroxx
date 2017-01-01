@@ -10,7 +10,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
 app.use(session({
   secret: process.env.SECRET,
-  resave: true
+  resave: true,
+  saveUninitialized: false
 }))
 
 app.set('port',process.env.PORT);
@@ -23,6 +24,7 @@ app.get('/home',function(req,res){
   var code  = req.query.code;
   var resstr = {};
   resstr['code'] = code;
+
   var data = JSON.stringify({
     client_id: "e3ec1ae4440a4ac8b08ec3c79d3bcae9",
     client_secret: "f44f191ee332442f855d8e7cf003d77c",
@@ -30,6 +32,7 @@ app.get('/home',function(req,res){
     redirect_url: "https://igroxx.herokuapp.com/home",
     code: code
   })
+
   var options = {
     host: 'https://api.instagram.com',
     path:'/oauth/access_token',
@@ -39,19 +42,21 @@ app.get('/home',function(req,res){
       'Content-Type':'application/json',
     }
   }
-  var p1 = new Promise(function(resolve, reject) {
-    var req = https.request(options,function(resp){
-      resp.on('data',function(chunk){
-        resstr['data'] = chunk;
-      })
-      resp.on('end',function(){
-        resolve(resstr)
-      })
-      resp.on('error',function(e){
-        resolve(e);
-      })
+  var req = https.request(options,function(resp){
+    resp.on('data',function(chunk){
+      resstr['data'] = chunk;
     })
-    req.write(data);
+    resp.on('end',function(){
+      res.json(resstr)
+    })
+    resp.on('error',function(e){
+      res.json(e);
+    })
+  })
+  req.write(data);
+  /*
+  var p1 = new Promise(function(resolve, reject) {
+
   });
   p1.then(
     function(val){
@@ -60,7 +65,7 @@ app.get('/home',function(req,res){
   )
   req.setTimeout(50000,function(){
     res.send(resstr.data)
-  });
+  });*/
 });
 
 app.get('/home2/:resp',function(req,res){
