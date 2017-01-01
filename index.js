@@ -22,10 +22,10 @@ app.get('/',function(req,res){
   res.render('index')
 })
 
-app.get('/home#access_token=:access_token',function(req,res){
+app.get('/home:something',function(req,res){
   //res.send(req);
 
-  res.send(req.params.access_token);
+  res.send(req.params.something);
   //urlObj = url.parse(req.path).hash()
   /*
   var code  = req.query.code;
