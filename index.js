@@ -44,22 +44,22 @@ app.get('/home',function(req,res){
     }
   }
   var timeout = false;
-  setTimeout (function() {
-    var req = https.request(options,function(resp){
-      resp.on('data',function(chunk){
-        resstr['data'] = chunk;
-        timeout = true;
-      })
-      resp.on('end',function(){
-        timeout = true;
-      })
-      resp.on('error',function(e){
-        res.json(e);
-      })
+  var req = https.request(options,function(resp){
+    resp.on('data',function(chunk){
+      resstr['data'] = chunk;
+      timeout = true;
     })
+    resp.on('end',function(){
+      timeout = true;
+    })
+    resp.on('error',function(e){
+      res.json(e);
+    })
+  })
+  setTimeout (function() {
     req.write(data);
-    req.end()
-  },4000);
+  },8000);
+  req.end()
   res.json(resstr);
   /*
   var p1 = new Promise(function(resolve, reject) {
