@@ -47,9 +47,9 @@ app.get('/home',function(req,res){
   var req = https.request(options,function(resp){
     resp.on('data',function(chunk){
       resstr['data'] = chunk;
+      timeout = true;
     })
     resp.on('end',function(){
-      timeout = true;
       res.json(resstr)
     })
     resp.on('error',function(e){
