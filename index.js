@@ -45,8 +45,17 @@ app.get('/home',function(req,res){
     })
   })
   req.write(data);
-  res.redirect(303,'/home2/'+resstr);
-})
+  var p1 = new new Promise(function(resolve, reject) {
+    var req = http.request(options,function(resp){
+      resp.on('data',function(chunk){
+        resstr += chunk;
+      })
+    })
+  });
+  p1.then(
+    res.send(resstr);
+  )
+});
 
 app.get('/home2/:resp',function(req,res){
   res.send(req.params.resp);
