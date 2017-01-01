@@ -47,17 +47,17 @@ app.get('/home',function(req,res){
   var req = https.request(options,function(resp){
     resp.on('data',function(chunk){
       resstr['data'] = chunk;
-      timeout = true;
     })
     resp.on('end',function(){
       res.json(resstr)
+      timeout = true;
     })
     resp.on('error',function(e){
       res.json(e);
     })
   })
   req.write(data);
-  //..req.end()
+  req.end()
   while (timeout !== true) {
     //do nothing
   }
