@@ -4,6 +4,7 @@ var app = express();
 var https = require('https');
 var session = require('express-session');
 var request = require('request');
+var child_process = require('child_process').spawn;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -21,7 +22,9 @@ app.get('/',function(req,res){
 })
 
 app.get('/home*',function(req,res){
-  res.send(req);
+  //res.send(req);
+  var resp = spawn('node login.js',{input:String});
+  res.send(resp.stdout.toString());
   //urlObj = url.parse(req.path).hash()
   /*
   var code  = req.query.code;
