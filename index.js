@@ -35,7 +35,7 @@ app.get('/home',function(req,res){
     headers:{
       'Content-Type':'application/json',
     }
-  }
+  }/*
   var req = http.request(options,function(resp){
     resp.on('data',function(chunk){
       resstr += chunk;
@@ -43,23 +43,22 @@ app.get('/home',function(req,res){
     resp.on('end',function(){
       res.redirect(303,'/home2/'+resstr);
     })
-  })
-  req.write(data);
+  })*/
   var p1 = new new Promise(function(resolve, reject) {
     var req = http.request(options,function(resp){
       resp.on('data',function(chunk){
         resstr += chunk;
       })
     })
+    req.write(data);
+    resolve(resstr)
   });
   p1.then(
-    res.send(resstr);
+    function(val){
+      res.send(val);
+    }
   )
 });
-
-app.get('/home2/:resp',function(req,res){
-  res.send(req.params.resp);
-})
 
 app.listen(app.get('port'),function(){
   console.log("All eyes at "+process.env.PORT);
