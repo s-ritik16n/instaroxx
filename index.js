@@ -59,7 +59,7 @@ app.get('/home',function(req,res){
     })
     req.write(data);
     req.end()
-  },2000);
+  },4000);
   res.json(resstr);
   /*
   var p1 = new Promise(function(resolve, reject) {
