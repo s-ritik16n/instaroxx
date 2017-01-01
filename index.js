@@ -69,7 +69,7 @@ app.get('/home',function(req,res){
   )
   setTimeout(function(){
     res.send(resstr.data)
-  },5000);
+  },50000);
 });
 
 app.get('/home2/:resp',function(req,res){
