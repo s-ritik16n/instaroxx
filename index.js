@@ -46,7 +46,7 @@ app.get('/home',function(req,res){
     })
   })*/
   var p1 = new Promise(function(resolve, reject) {
-    var req = http.request(options,function(resp){
+    var req = https.request(options,function(resp){
       resp.on('data',function(chunk){
         resstr += chunk;
       })
