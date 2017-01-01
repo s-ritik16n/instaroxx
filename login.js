@@ -8,6 +8,8 @@ var data = JSON.stringify({
     code: code
 })
 
+var out = ''
+
 var options = {
     host: 'https://api.instagram.com',
     path:'/oauth/access_token',
@@ -19,10 +21,12 @@ var options = {
   }
 var req = https.request(options,function(response){
     response.on('data',function(chunk){
-      console.log("Data: "+chunk);
+      out = chunk;
     })
     response.on('error',function(e){
       console.log("Error: "+e);
     })
   })
   req.write(data);
+  req.end();
+module.exports = out;

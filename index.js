@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
+var login = require('./login');
 var https = require('https');
 var session = require('express-session');
 var request = require('request');
@@ -21,15 +22,10 @@ app.get('/',function(req,res){
   res.render('index')
 })
 
-app.get('/home*',function(req,res){
+app.get('/home#access_token=:access_token',function(req,res){
   //res.send(req);
-  var resp = spawn('node login.js',{input:String});
-  var obj = resp.stdout.toString();
-  var str='';
-  for(var i=0;i<15;i++){
-    str+=obj['"'+i+'"']
-  }
-  res.send(obj['0']+obj['1']+obj["2"]);
+
+  res.send(req.params.access_token);
   //urlObj = url.parse(req.path).hash()
   /*
   var code  = req.query.code;
