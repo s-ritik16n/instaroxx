@@ -5,7 +5,7 @@ var data = JSON.stringify({
     client_secret: process.env.CLIENT_SECRET,
     grant_type: "authorizaton_code",
     redirect_url: "https://igroxx.herokuapp.com/home",
-    code: code
+    code: "code"
 })
 
 var out = ''
