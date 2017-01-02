@@ -52,7 +52,7 @@ app.get('/home',function(req,res){
       req.session.data = val;
     })
     setTimeout(function(){
-      res.redirect('/home2')
+      res.send(req.session.data)
     },5000);
 })
 
