@@ -31,7 +31,7 @@ app.get('/home',function(req,res){
       code: "code"
   })
   var options = {
-      host: 'https://api.instagram.com',
+      hostname: 'api.instagram.com',
       path:'/oauth/access_token',
       method:'POST',
       port: 80,
