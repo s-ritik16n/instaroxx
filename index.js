@@ -21,8 +21,8 @@ app.get('/',function(req,res){
   res.render('index')
 });
 
-app.get('/home/:code',function(req,res){
-  req.session.code = code;
+app.get('/home',function(req,res){
+  req.session.code = req.query.code;
   var data = JSON.stringify({
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
