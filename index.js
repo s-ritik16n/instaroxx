@@ -32,10 +32,9 @@ app.get('/home',function(req,res){
       code: req.session.code
   })
   var options = {
-      host: 'api.instagram.com',
-      path:'/oauth/access_token',
+      url: 'https://api.instagram.com/oauth/access_token',
       method:'POST',
-      port: 443,
+      json:true,
       headers:{
         'Content-Type':'application/json',
       },
