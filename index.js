@@ -35,9 +35,6 @@ app.get('/home',function(req,res){
       url: 'https://api.instagram.com/oauth/access_token',
       method:'POST',
       json:true,
-      headers:{
-        'Content-Type':'application/json',
-      },
       form:{
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
@@ -63,7 +60,7 @@ app.get('/home',function(req,res){
         req.session.data = body;
     })
     setTimeout(function(){
-      res.redirect(200,'/home2')
+      res.redirect(303,'/home2')
     },4000);
 })
 
