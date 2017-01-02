@@ -23,13 +23,14 @@ app.get('/',function(req,res){
 
 app.get('/home',function(req,res){
   req.session.code = req.query.code;
-  var data = {
+  var data = JSON.stringify({
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "authorizaton_code",
       redirect_url: "https://igroxx.herokuapp.com/home",
       code: "code"
-  }
+  })
+
   var options = {
       host: 'api.instagram.com',
       path:'/oauth/access_token',
