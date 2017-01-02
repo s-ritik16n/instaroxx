@@ -39,7 +39,7 @@ app.get('/home',function(req,res){
       headers:{
         'Content-Type':'application/json',
       },
-      form:{
+      body:{
           client_id: process.env.CLIENT_ID,
           client_secret: process.env.CLIENT_SECRET,
           grant_type: "authorizaton_code",
