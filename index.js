@@ -64,8 +64,8 @@ app.get('/home',function(req,res){
         req.session.data = body;
     })
     setTimeout(function(){
-      res.send(req.session.data)
-    },5000);
+      res.json(req.session.data)
+    },4000);
 })
 
 app.get('/home2',function(req,res){
