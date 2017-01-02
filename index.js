@@ -33,7 +33,7 @@ app.get('/home',function(req,res){
   })
   var options = {
     headers:{
-      'content-type': 'application/json'
+      'content-type': 'application/x-www-form-urlencoded'
     },
       url: 'https://api.instagram.com/oauth/access_token',
       method:'POST',
