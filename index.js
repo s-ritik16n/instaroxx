@@ -46,25 +46,12 @@ app.get('/home',function(req,res){
         code: req.session.code
       }
     }
-    /*
-    var p1 = new Promise(function(resolve, reject) {
-      var req = https.request(options,function(response){
-        response.on('data',function(chunk){
-          resolve(chunk.toString())
-        })
-      })
-      req.write(data);
-      req.end();
-    });
-    p1.then(function(val){
-      req.session.data = val;
-    })*/
     request(options, function(err,res,body){
         req.session.data = body;
     })
     setTimeout(function(){
       res.json(req.session.data)
-    },4000);
+    },5000);
 })
 
 app.get('/home2',function(req,res){
