@@ -5,6 +5,7 @@ var https = require('https');
 var session = require('express-session');
 var request = require('request');
 var spawn = require('child_process').spawn;
+var request = require('request');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -37,8 +38,16 @@ app.get('/home',function(req,res){
       port: 443,
       headers:{
         'Content-Type':'application/json',
+      },
+      form:{
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
+        grant_type: "authorizaton_code",
+        redirect_uri: "https://igroxx.herokuapp.com/home",
+        code: req.session.code
       }
     }
+    /*
     var p1 = new Promise(function(resolve, reject) {
       var req = https.request(options,function(response){
         response.on('data',function(chunk){
@@ -50,6 +59,9 @@ app.get('/home',function(req,res){
     });
     p1.then(function(val){
       req.session.data = val;
+    })*/
+    request(options, function(err,res,body){
+        req.session.data = body;
     })
     setTimeout(function(){
       res.send(req.session.data)
