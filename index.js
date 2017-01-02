@@ -42,7 +42,7 @@ app.get('/home',function(req,res){
     var p1 = new Promise(function(resolve, reject) {
       var req = https.request(options,function(response){
         response.on('data',function(chunk){
-          resolve(chunk)
+          resolve(chunk.toString())
         })
       })
       req.write(data);
