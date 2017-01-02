@@ -32,6 +32,9 @@ app.get('/home',function(req,res){
       code: req.session.code
   })
   var options = {
+    headers:{
+      'content-type': 'application/json'
+    },
       url: 'https://api.instagram.com/oauth/access_token',
       method:'POST',
       json:true,
