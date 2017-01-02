@@ -55,7 +55,7 @@ app.get('/home',function(req,res){
 })
 
 app.get('/home2',function(req,res){
-  res.send(req.session.data);
+  res.send(req.session.data||'ritik');
 })
 
 app.listen(app.get('port'),function(){
