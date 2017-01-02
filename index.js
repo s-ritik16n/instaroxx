@@ -35,16 +35,11 @@ app.get('/home',function(req,res){
     headers:{
       'content-type': 'application/x-www-form-urlencoded'
     },
-      url: 'https://api.instagram.com/oauth/access_token',
+      url: 'api.instagram.com',
+      path: '/oauth/access_token',
       method:'POST',
       json:true,
-      body:{
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.CLIENT_SECRET,
-        grant_type: "authorizaton_code",
-        redirect_uri: "https://igroxx.herokuapp.com/home",
-        code: req.session.code
-      }
+      port:443
     }/*
     request(options, function(err,res,body){
         req.session.data = body;
@@ -58,7 +53,7 @@ app.get('/home',function(req,res){
     request.end();
     setTimeout(function(){
       res.json(req.session.data)
-    },3000);
+    },5000);
 })
 
 app.get('/home2',function(req,res){
