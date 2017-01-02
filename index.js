@@ -51,11 +51,13 @@ app.get('/home',function(req,res){
     p1.then(function(val){
       req.session.data = chunk;
     })
-    res.redirect('/home2')
+    setTimeout(function(){
+      res.redirect('/home2')
+    },5000);
 })
 
 app.get('/home2',function(req,res){
-  res.send(req.session.data||'ritik');
+  res.send(req.session.data);
 })
 
 app.listen(app.get('port'),function(){
