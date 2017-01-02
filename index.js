@@ -35,7 +35,7 @@ app.get('/home',function(req,res){
     headers:{
       'content-type': 'application/x-www-form-urlencoded'
     },
-      url: 'api.instagram.com',
+      hostname: 'api.instagram.com',
       path: '/oauth/access_token',
       method:'POST',
       port:443
