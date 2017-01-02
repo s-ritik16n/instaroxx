@@ -43,7 +43,7 @@ app.get('/home',function(req,res){
           client_id: process.env.CLIENT_ID,
           client_secret: process.env.CLIENT_SECRET,
           grant_type: "authorizaton_code",
-          redirect_url: "https://igroxx.herokuapp.com/home",
+          redirect_url: "/home",
           code: req.session.code
       }
     }
@@ -65,7 +65,7 @@ app.get('/home',function(req,res){
 })
 
 app.get('/home2',function(req,res){
-  res.send(req.session.data);
+  res.json(req.session.data);
 })
 
 app.listen(app.get('port'),function(){
