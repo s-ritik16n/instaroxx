@@ -1,7 +1,6 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-//var login = require('./login');
 var https = require('https');
 var session = require('express-session');
 var request = require('request');
@@ -22,12 +21,41 @@ app.get('/',function(req,res){
   res.render('index')
 });
 
-app.get('/home',function(req,res){
-  res.sendFile(__dirname+'/public/index.html')
+app.get('/home/:code',function(req,res){
+  req.session.code = code;
+  var data = JSON.stringify({
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
+      grant_type: "authorizaton_code",
+      redirect_url: "https://igroxx.herokuapp.com/home",
+      code: "code"
+  })
+  var options = {
+      host: 'https://api.instagram.com',
+      path:'/oauth/access_token',
+      method:'POST',
+      port: 80,
+      headers:{
+        'Content-Type':'application/json',
+      }
+    }
+    var p1 = new Promise(function(resolve, reject) {
+      var req = https.request(options,function(response){
+        response.on('data',function(chunk){
+          resolve(chunk)
+        })
+      })
+    });
+    p1.then(function(val){
+      req.session.data = chunk;
+    })
+    req.write(data);
+    req.end();
+    res.redirect('/home2')
 })
 
-app.get('/home2/:resp',function(req,res){
-  res.send(req.params.resp);
+app.get('/home2',function(req,res){
+  res.send(req.session.data);
 })
 
 app.listen(app.get('port'),function(){
