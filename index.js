@@ -53,7 +53,7 @@ app.get('/home',function(req,res){
     })
     setTimeout(function(){
       res.redirect('/home2')
-    },5000);
+    },3000);
 })
 
 app.get('/home2',function(req,res){
