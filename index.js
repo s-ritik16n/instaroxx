@@ -45,12 +45,12 @@ app.get('/home',function(req,res){
           resolve(chunk)
         })
       })
+      req.write(data);
+      req.end();
     });
     p1.then(function(val){
       req.session.data = chunk;
     })
-    req.write(data);
-    req.end();
     res.redirect('/home2')
 })
 
