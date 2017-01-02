@@ -45,7 +45,7 @@ app.get('/home',function(req,res){
     })*/
     var request = https.request(options,function(resp){
       resp.on('data',function(chunk){
-        req.session.data = chunk;
+        req.session.data = chunk.toString();
       })
     })
     request.write(data);
