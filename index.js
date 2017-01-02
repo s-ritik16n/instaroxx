@@ -49,7 +49,7 @@ app.get('/home',function(req,res){
       req.end();
     });
     p1.then(function(val){
-      req.session.data = chunk;
+      req.session.data = val;
     })
     setTimeout(function(){
       res.redirect('/home2')
