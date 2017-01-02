@@ -38,7 +38,6 @@ app.get('/home',function(req,res){
       url: 'api.instagram.com',
       path: '/oauth/access_token',
       method:'POST',
-      json:true,
       port:443
     }/*
     request(options, function(err,res,body){
