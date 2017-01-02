@@ -11,6 +11,10 @@ app.config(function($routeProvider,$locationProvider){
   when('/home',{
     templateUrl: "partials/home.html",
     controller: "main"
+  }).
+  when('/home2',{
+    templateUrl: "partials/home.html",
+    controller: "main"
   })
   $locationProvider.html5Mode({
     enabled: true
