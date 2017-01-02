@@ -27,7 +27,7 @@ app.get('/home',function(req,res){
       client_Id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "authorizaton_code",
-      redirect_url: "https://igroxx.herokuapp.com/home",
+      redirect_uri: "https://igroxx.herokuapp.com/home",
       code: req.session.code
   })
   var options = {
