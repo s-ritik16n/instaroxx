@@ -28,9 +28,8 @@ app.get('/home',function(req,res){
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "authorizaton_code",
       redirect_url: "https://igroxx.herokuapp.com/home",
-      code: "code"
+      code: req.session.code
   })
-
   var options = {
       host: 'api.instagram.com',
       path:'/oauth/access_token',
@@ -38,13 +37,6 @@ app.get('/home',function(req,res){
       port: 443,
       headers:{
         'Content-Type':'application/json',
-      },
-      form:{
-          client_id: process.env.CLIENT_ID,
-          client_secret: process.env.CLIENT_SECRET,
-          grant_type: "authorizaton_code",
-          redirect_url: "/home",
-          code: req.session.code
       }
     }
     var p1 = new Promise(function(resolve, reject) {
