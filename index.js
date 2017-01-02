@@ -45,10 +45,17 @@ app.get('/home',function(req,res){
         redirect_uri: "https://igroxx.herokuapp.com/home",
         code: req.session.code
       }
-    }
+    }/*
     request(options, function(err,res,body){
         req.session.data = body;
+    })*/
+    https.request(options,function(resp){
+      resp.on('data',function(chunk){
+        req.session.data = chunk;
+      })
     })
+    req.write(data);
+    req.end();
     setTimeout(function(){
       res.json(req.session.data)
     },5000);
