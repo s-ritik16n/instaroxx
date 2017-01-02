@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var https = require('https');
 var session = require('express-session');
-var request = require('request');
+//var request = require('request');
 var spawn = require('child_process').spawn;
 var request = require('request');
 
@@ -49,13 +49,13 @@ app.get('/home',function(req,res){
     request(options, function(err,res,body){
         req.session.data = body;
     })*/
-    https.request(options,function(resp){
+    var request = https.request(options,function(resp){
       resp.on('data',function(chunk){
         req.session.data = chunk;
       })
     })
-    req.write(data);
-    req.end();
+    request.write(data);
+    request.end();
     setTimeout(function(){
       res.json(req.session.data)
     },5000);
