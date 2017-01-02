@@ -39,6 +39,13 @@ app.get('/home',function(req,res){
       headers:{
         'Content-Type':'application/json',
       }
+      form:{
+          client_id: process.env.CLIENT_ID,
+          client_secret: process.env.CLIENT_SECRET,
+          grant_type: "authorizaton_code",
+          redirect_url: "https://igroxx.herokuapp.com/home",
+          code: req.session.code
+      }
     }
     var p1 = new Promise(function(resolve, reject) {
       var req = https.request(options,function(response){
