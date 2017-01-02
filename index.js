@@ -64,7 +64,7 @@ app.get('/home',function(req,res){
         req.session.data = body;
     })
     setTimeout(function(){
-      res.json(req.session.data)
+      res.redirect(303,'/home2')
     },4000);
 })
 
