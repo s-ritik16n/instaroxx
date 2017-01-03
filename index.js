@@ -53,7 +53,7 @@ app.get('/home',function(req,res){
       }
     ],function(err,results){
       //res.redirect(303,'/home2');
-      res.json(req.session.data)
+      res.json(req.session.data||results[0])
     })
 })
 
