@@ -39,7 +39,7 @@ app.get('/home',function(req,res){
       method:'POST',
       port:443
     }
-    async.series([
+    async.waterfall([
       function(callback){
         var request = https.request(options,function(resp){
           resp.on('data',function(chunk){
