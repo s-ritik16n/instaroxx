@@ -21,13 +21,13 @@ app.get('/',function(req,res){
 
 app.get('/home',function(req,res){
   req.session.code = req.query.code;
-  var data = JSON.stringify({
+  var data = {
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "authorizaton_code",
       redirect_uri: "...",
       code: req.session.code
-  })
+  }
   var options = {
     headers:{
       'content-type': 'application/x-www-form-urlencoded'
@@ -42,7 +42,7 @@ app.get('/home',function(req,res){
         req.session.data = chunk.toString();
       })
     })
-    request.write(data);
+    request.write(data.toString());
     request.end();
     setTimeout(function(){
       res.json(data)
