@@ -45,6 +45,7 @@ app.get('/home',function(req,res){
         var request = https.request(options,function(resp){
           resp.on('data',function(chunk){
             req.session.data = chunk.toString();
+            res.send(req.session.data)
           })
         })
         request.write(data);
@@ -55,9 +56,6 @@ app.get('/home',function(req,res){
       //res.redirect(303,'/home2');
       res.json(req.session.data)
     })
-
-    /*setTimeout(function(){
-    },5000);*/
 })
 
 app.get('/home2',function(req,res){
