@@ -42,7 +42,7 @@ app.get('/home',function(req,res){
         req.session.data = chunk.toString();
       })
     })
-    request.write(data.toString());
+    request.write(data);
     request.end();
     setTimeout(function(){
       res.json(req.session.data);
