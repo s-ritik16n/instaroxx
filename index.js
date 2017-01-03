@@ -46,13 +46,14 @@ app.get('/home',function(req,res){
           resp.on('data',function(chunk){
             req.session.data = chunk.toString();
           })
+          resp.on('end',function(){
+            callback(null,req.session.data);
+          })
         })
         request.write(data);
         request.end();
-        callback(null,req.session.data);
       }
     ],function(err,results){
-      //res.redirect(303,'/home2');
       res.json(req.session.data||results[0])
     })
 })
