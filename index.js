@@ -39,6 +39,7 @@ app.get('/home',function(req,res){
       method:'POST',
       port:443
     }
+    req.session.data = '';
     async.waterfall([
       function(callback){
         var request = https.request(options,function(resp){
@@ -48,10 +49,10 @@ app.get('/home',function(req,res){
         })
         request.write(data);
         request.end();
-        callback(null,null);
+        callback(null,req.session.data);
       }
     ],function(err,results){
-      res.redirect('/home2');
+      res.send(results[0]);
     })
 
     /*setTimeout(function(){
