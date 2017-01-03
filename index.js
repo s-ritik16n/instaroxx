@@ -59,7 +59,7 @@ app.get('/home',function(req,res){
 })
 
 app.get('/home2',function(req,res){
-  res.json(req.session.data);
+  res.json(req.session.data||"sds");
 })
 
 app.listen(app.get('port'),function(){
