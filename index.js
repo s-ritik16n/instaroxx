@@ -45,7 +45,7 @@ app.get('/home',function(req,res){
     request.write(data.toString());
     request.end();
     setTimeout(function(){
-      res.json(data.toString())
+      res.json(req.session.data);
     },5000);
 })
 
