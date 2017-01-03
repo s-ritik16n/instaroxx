@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var https = require('https');
 var session = require('express-session');
+var querystring = require('querystring');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -21,13 +22,13 @@ app.get('/',function(req,res){
 
 app.get('/home',function(req,res){
   req.session.code = req.query.code;
-  var data = {
+  var data = querystring.stringify({
       "client_id": process.env.CLIENT_ID,
       "client_secret": process.env.CLIENT_SECRET,
       "grant_type": "authorizaton_code",
       "redirect_uri": "https://igroxx.herokuapp.com/",
       "code": req.session.code
-  }
+  })
   var options = {
     headers:{
       'content-type': 'application/x-www-form-urlencoded'
@@ -37,11 +38,13 @@ app.get('/home',function(req,res){
       method:'POST',
       port:443
     }
+
     var request = https.request(options,function(resp){
       resp.on('data',function(chunk){
         req.session.data = chunk.toString();
       })
     })
+
     request.write(data);
     request.end();
     setTimeout(function(){
