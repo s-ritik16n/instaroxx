@@ -17,7 +17,9 @@ app.use(session({
 app.set('port',process.env.PORT);
 
 app.get('/',function(req,res){
-  res.render('index')
+  setTimeout(function(){
+    res.render('index')
+  },3000)
 });
 
 app.get('/home',function(req,res){
