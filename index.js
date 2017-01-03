@@ -27,7 +27,7 @@ app.get('/home',function(req,res){
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "authorizaton_code",
-      redirect_uri: "https://igroxx.herokuapp.com/",
+      redirect_uri: "https://igroxx.herokuapp.com/home",
       code: req.session.code
   })
   var options = {
@@ -45,7 +45,6 @@ app.get('/home',function(req,res){
         var request = https.request(options,function(resp){
           resp.on('data',function(chunk){
             req.session.data = chunk.toString();
-            res.send(req.session.data)
           })
         })
         request.write(data);
