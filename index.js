@@ -23,11 +23,11 @@ app.get('/',function(req,res){
 app.get('/home',function(req,res){
   req.session.code = req.query.code;
   var data = querystring.stringify({
-      "client_id": process.env.CLIENT_ID,
-      "client_secret": process.env.CLIENT_SECRET,
-      "grant_type": "authorizaton_code",
-      "redirect_uri": "https://igroxx.herokuapp.com/",
-      "code": req.session.code
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
+      grant_type: "authorizaton_code",
+      redirect_uri: "https://igroxx.herokuapp.com/",
+      code: req.session.code
   })
   var options = {
     headers:{
