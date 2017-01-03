@@ -4,6 +4,7 @@ var app = express();
 var https = require('https');
 var session = require('express-session');
 var querystring = require('querystring');
+var async = require('async');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -38,18 +39,23 @@ app.get('/home',function(req,res){
       method:'POST',
       port:443
     }
-
-    var request = https.request(options,function(resp){
-      resp.on('data',function(chunk){
-        req.session.data = chunk.toString();
-      })
+    async.series([
+      function(callback){
+        var request = https.request(options,function(resp){
+          resp.on('data',function(chunk){
+            req.session.data = chunk.toString();
+          })
+        })
+        request.write(data);
+        request.end();
+        callback(null,null);
+      }
+    ],function(err,results){
+      res.send(req.session.data);
     })
 
-    request.write(data);
-    request.end();
-    setTimeout(function(){
-      res.send(req.session.data);
-    },5000);
+    /*setTimeout(function(){
+    },5000);*/
 })
 
 app.listen(app.get('port'),function(){
