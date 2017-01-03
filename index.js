@@ -52,7 +52,8 @@ app.get('/home',function(req,res){
         callback(null,req.session.data);
       }
     ],function(err,results){
-      res.redirect(303,'/home2');
+      //res.redirect(303,'/home2');
+      res.json(req.session.data)
     })
 
     /*setTimeout(function(){
