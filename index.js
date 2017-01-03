@@ -52,7 +52,7 @@ app.get('/home',function(req,res){
         callback(null,req.session.data);
       }
     ],function(err,results){
-      res.send(results[0]);
+      res.redirect(303,'/home2');
     })
 
     /*setTimeout(function(){
@@ -60,7 +60,7 @@ app.get('/home',function(req,res){
 })
 
 app.get('/home2',function(req,res){
-  res.json(req.session.data||"sds");
+  res.json(req.session.data+"sds");
 })
 
 app.listen(app.get('port'),function(){
