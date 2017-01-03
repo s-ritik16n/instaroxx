@@ -51,11 +51,15 @@ app.get('/home',function(req,res){
         callback(null,null);
       }
     ],function(err,results){
-      res.send(req.session.data);
+      res.redirect('/home2');
     })
 
     /*setTimeout(function(){
     },5000);*/
+})
+
+app.get('/home2',function(req,res){
+  res.json(req.session.data);
 })
 
 app.listen(app.get('port'),function(){
