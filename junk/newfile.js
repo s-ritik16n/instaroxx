@@ -15,7 +15,7 @@ page.onResourceReceived = function(response){
 
 page.open("https://www.instagram.com/accounts/login",function(){
 
-  page.sendEvent('keypress','trialaccount012',null,null,0);
+  page.sendEvent('keypress','',null,null,0);
   page.sendEvent('keypress',page.event.key.Tab,null,null,0);
   //page.sendEvent('click',ig.pass.x, ig.pass.y);
   page.sendEvent('keypress', '',null,null,0);

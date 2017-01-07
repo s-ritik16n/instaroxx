@@ -1,6 +1,7 @@
 var casper = require('casper').create({
   'logLevel':'debug'
 });
+var mouse = require('mouse').create(casper);
 
 casper.options.pageSettings.javascriptEnabled = true;
 
@@ -16,7 +17,9 @@ casper.waitForSelector("form._taytv",function(){
   this.sendKeys('input[name="username"]','',{keepFocus: true});
   this.sendKeys('input[name="password"]','',{keepFocus: true});
   this.click('button._taytv');
-  this.capture('screen.png');
+  casper.waitTimeOut(5000,function(){
+    this.capture('/home/ritik/screen.png');
+  });
 },10000)
 
 casper.run()

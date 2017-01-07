@@ -31,16 +31,51 @@ page.open('https:/instagram.com/accounts/login/', function() {
 
 			     // fill in data and press login
 			     page.sendEvent('click',ig.user.x, ig.user.y);
-			     page.sendEvent('keypress', 'username');
+			     page.sendEvent('keypress', '');
 
 			     page.sendEvent('click',ig.pass.x, ig.pass.y);
-			     page.sendEvent('keypress', 'password');
+			     page.sendEvent('keypress', '');
 			     page.sendEvent('click', ig.login.x, ig.login.y);
+           var ig1 = [];
+           var cookies = [];
+           for(var i in phantom.cookies){
+             console.log(phantom.cookies[i].name+": "+phantom.cookies[i].value+" : "+phantom.cookies[i].domain);
+             phantom.addCookie({
+               'name':phantom.cookies[i].name,
+               'value': phantom.cookies[i].value,
+               'domain':phantom.cookies[i].domain
+             })
+           }
+           setTimeout(function(){
+             ig1 = page.evaluate(function() {
+                 function getCoords(box) {
+                     return  {
+                         x: box.left,
+                       y: box.top
+                     };
+                 }
 
-			    // wait for response
+                 function getPosition(type, href) {
+                     // find fields to fill
+                     var input = document.getElementsByTagName(type);
+                     for(var i = 0; i < input.length; i++) {
+                         if(href && input[i].href == href)  return getCoords(input[i].getBoundingClientRect());
+                     }
+                 }
+                 return {
+                     prof: getPosition('a','')
+                 };
+         			});
+           },2000);
+           page.sendEvent('click',ig1.x,ig1.y);
+
 			    setTimeout(function() {
+              //console.log(cookies[0]);
 			        page.render('/home/ritik/WEB/instagram.png');
 			        phantom.exit();
-			    }, 10000);
+			    }, 5000);
+        })
 
-			});
+page.onConsoleMessage = function(msg){
+  console.log(msg);
+}
