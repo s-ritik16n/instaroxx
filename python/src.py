@@ -14,7 +14,7 @@ session = requests.Session()
 session.headers.update({'Referer':'https://www.instagram.com/'})
 req = session.get('https://www.instagram.com/')
 session.headers.update({'X-CSRFToken':req.cookies['csrftoken']})
-login_data = {'username': 'ritik16n', 'password': '#Date20111995'}
+login_data = {'username': 'ritik16n', 'password': ''}
 login = session.post('https://www.instagram.com/accounts/login/ajax/', data=login_data, allow_redirects=True)
 session.headers.update({'X-CSRFToken': login.cookies['csrftoken']})
 cookies = login.cookies
