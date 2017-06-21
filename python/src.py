@@ -5,11 +5,6 @@ import json
 #s = requests.Session()
 #res = s.get("https://www.instagram.com")
 
-#cookies = dict(res.cookies)
-#headers = {"X-CSRFToken":cookies["csrftoken"]}
-#login_req = requests.post("https://www.instagram.com/accounts/login/",data = {"username":"ritik16n","password":"#Date20111995"},cookies = cookies,allow_redirects=True)
-#print(login_req.text)
-
 session = requests.Session()
 session.headers.update({'Referer':'https://www.instagram.com/'})
 req = session.get('https://www.instagram.com/')
